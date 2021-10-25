@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Table</title>
+    <style>
+        
+        label {
+            display: block;
+        }
+
+        table,
+        td {
+            border: 1px solid rgb(133, 81, 130);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Normal Distributions</h2>
+    <div>
+        <h2 id="title"></h2>
+        <table id="tablo"></table>
+        <br />
+    </div>
+
+    <hr />
+    <b>Sample code</b>
+    <pre id="sample"></pre>
+    <hr />
+
+    <script>
+        const L = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+        let P = []
+        const x = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+        /*
+        let sum = 0;
+        for (let a = 0; a < L.length; a++) {
+            sum += L[a]
+        }
+        let mean = sum / L.length;
+        */
+        
+
+        function normalDist() {
+
+            let sum = 0;
+            for (let a = 0; a < L.length; a++) {
+                sum += L[a]
+            }
+            let mean = sum / L.length;
+
+            //Standard Deviation Calculate
+            let variance = 0;
+            for (let i = 0; i < L.length; i++) {
+                variance += Math.pow(L[i] - mean,2) / L.length;
+            }
+            let std = Math.sqrt(variance);
+
+
+            let result = 0;
+            const e = 2.718281828;
+            const pi = 3.14;
+            
+            for (let j = 0; j < L.length; j++) {
+                for (let k = 0; k < x.length; k++) {
+                    let X = x[k];
+                    //result = (Math.exp(-((X - mean) ** 2) / ((2 * std) ** 2))) / (std * Math.sqrt(2 * Math.PI));
+                    //result = e**(-((X - mean)** 2))  /  std * Math.sqrt(2*pi)
+                    let part1 = -1 * Math.pow(X - mean,2);
+                    let part2 = 2 * Math.pow(std,2);
+                    let full = part1/part2;
+                    result = (Math.pow(e,full )) / std * Math.sqrt(2*pi);
+                    P.push(result);
+                }
+
+            }
+        }
+
+
+        let n = L.length;
+        let m = x.length;
+
+        function printTable() {
+
+            let row = "<th></th>";
+            for (let j = 0; j < n; j++)
+                row += "<th>" + "λ=" + L[j] + "</th>";
+
+            let text = "<tr>" + row + "</tr>";
+
+            for (let i = 0; i < m; i++) {
+
+                row = "<th>" + "x=" + i + "</th>";
+                
+                for (let k = 0; k < n; k++) {
+                    row += "<td>" + (P[k]).toFixed(4) + "</td>";
+                    text += "<tr>" + row + "</tr>";
+                }
+
+                
+            }
+            tablo.innerHTML = text;
+        }
+        
+        sample.innerHTML = normalDist.toString() + `<br>`+  printTable.toString();
+        normalDist()
+        printTable()
+    </script>
+</body>
+
+</html>
