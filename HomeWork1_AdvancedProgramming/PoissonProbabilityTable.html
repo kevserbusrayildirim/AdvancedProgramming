@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Table</title>
     <style>
-        
         label {
             display: block;
         }
@@ -43,7 +42,7 @@
         }
         let mean = sum / L.length;
         */
-        
+
 
         function normalDist() {
 
@@ -56,7 +55,7 @@
             //Standard Deviation Calculate
             let variance = 0;
             for (let i = 0; i < L.length; i++) {
-                variance += Math.pow(L[i] - mean,2) / L.length;
+                variance += Math.pow(L[i] - mean, 2) / L.length;
             }
             let std = Math.sqrt(variance);
 
@@ -64,16 +63,16 @@
             let result = 0;
             const e = 2.718281828;
             const pi = 3.14;
-            
+
             for (let j = 0; j < L.length; j++) {
                 for (let k = 0; k < x.length; k++) {
                     let X = x[k];
                     //result = (Math.exp(-((X - mean) ** 2) / ((2 * std) ** 2))) / (std * Math.sqrt(2 * Math.PI));
                     //result = e**(-((X - mean)** 2))  /  std * Math.sqrt(2*pi)
-                    let part1 = -1 * Math.pow(X - mean,2);
-                    let part2 = 2 * Math.pow(std,2);
-                    let full = part1/part2;
-                    result = (Math.pow(e,full )) / std * Math.sqrt(2*pi);
+                    let part1 = -1 * Math.pow(X - mean, 2);
+                    let part2 = 2 * Math.pow(std, 2);
+                    let full = part1 / part2;
+                    result = (Math.pow(e, full)) / std * Math.sqrt(2 * pi);
                     P.push(result);
                 }
 
@@ -95,18 +94,17 @@
             for (let i = 0; i < m; i++) {
 
                 row = "<th>" + "x=" + i + "</th>";
-                
+
                 for (let k = 0; k < n; k++) {
                     row += "<td>" + (P[k]).toFixed(4) + "</td>";
-                    text += "<tr>" + row + "</tr>";
                 }
 
-                
+                text += "<tr>" + row + "</tr>";
             }
             tablo.innerHTML = text;
         }
-        
-        sample.innerHTML = normalDist.toString() + `<br>`+  printTable.toString();
+
+        sample.innerHTML = normalDist.toString() + `<br>` + printTable.toString();
         normalDist()
         printTable()
     </script>
