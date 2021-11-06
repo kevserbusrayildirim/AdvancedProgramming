@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CW#8 - SubtleCrypto</title>
+
+<style>
+  body { max-width: 500px; }
+  div { margin: 12px 0; }
+  img {
+    max-width: 100%;
+    border: 1px solid darkgray;
+  }
+  #remote {
+    width: 290px;
+    font: 13px arial, sans-serif;
+    margin: 14px 0;
+    border: 1px solid darkgray;
+    padding: 5px;
+  }
+  #sample, #out { overflow-x: auto; }
+  #disp1 { color: blue; word-wrap: normal; }
+</style>
+</head>
+
+<body>
+<h2 id=title></h2>
+
+<div>
+  URL: 
+  <input type=text id=remote > <br>
+  <input type=file id=button >
+</div>
+<div id=msg></div>
+<pre id=disp1></pre> <img id=disp2 />
+
+<hr>
+<b>Sample code</b>
+<pre id=sample></pre>
+<hr>
+<p>Ref: <a href="Reading_files">Reading files</a>
+ </p>
+
+<script>
+"use strict";
+
+
+
+function shaFromBuffer(buf) { //ArrayBuffer or ArrayBufferView
+    crypto.subtle.digest(MENU.algorithm, buf)
+      .then(b => display(MENU.bufferToHex(b)))
+      .catch(console.error)
+} 
+function shaFromFile(f) { //File or Blob
+    f.arrayBuffer()
+      .then(MENU.shaFromBuffer)
+}
+function shaFromURL(u) { //URL or string
+    fetch(u).then(r => r.arrayBuffer())
+      .then(MENU.shaFromBuffer)
+}
+function  bufferToHex(buf) {
+    return [...new Uint8Array(buf)].map(toHex).join('')
+}
+
+
+/*
+const RDR = new FileReader();
+// ornek kedi resmi linki
+// https://pbs.twimg.com/media/FDcs2dMWEAEtI4v?format=jpg&name=900x900
+async function displayURL() {
+  const response = await fetch(remote.value)
+  const blob = await response.blob()
+  const url = URL.createObjectURL(blob)
+  disp2.src = url
+  shaFromURL(remove.value)
+  console.log("shaFromURL: " + shaFromURL(remove.value))
+}
+function displayBlob(f) {
+    shaFromFile(remove.value)
+    console.assert(f instanceof Blob)
+    msg.innerText = f.size+" bytes "+f.type
+    disp1.innerText = ""; 
+    disp2.src = ""
+    if (f.type.startsWith("image")) {
+        RDR.readAsDataURL(f); //display image
+        RDR.onload = () => console.log(f, RDR)
+    } else if (f.type.startsWith("text")) {
+        RDR.readAsText(f);  //display text
+        RDR.onload = () => {
+          console.log(f, RDR.result)
+          disp1.innerText = RDR.result
+        }
+    } else {
+        msg.innerText += " -- Unknown"
+    }
+    console.log("shaFromFile: " + shaFromFile(f))
+}
+*/
+
+
+
+title.innerText = document.title
+sample.innerText = ""
+</script>
+
+</body>
+</html>
