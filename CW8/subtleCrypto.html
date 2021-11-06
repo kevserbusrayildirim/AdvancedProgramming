@@ -1,51 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>CW#8 - SubtleCrypto</title>
-
-<style>
-  body { max-width: 500px; }
-  div { margin: 12px 0; }
-  img {
-    max-width: 100%;
-    border: 1px solid darkgray;
-  }
-  #remote {
-    width: 290px;
-    font: 13px arial, sans-serif;
-    margin: 14px 0;
-    border: 1px solid darkgray;
-    padding: 5px;
-  }
-  #sample, #out { overflow-x: auto; }
-  #disp1 { color: blue; word-wrap: normal; }
-</style>
+    <title>SubtleCrypto </title>
+    <style>
+      #div1, #div2 {
+        vertical-align: text-top;
+        display: inline-block;
+      }
+      #div1 {
+        width: 400px;
+        margin-right: 10px;
+      }
+      #div2 {
+        width: 350px;
+      }
+    </style>
 </head>
 
 <body>
-<h2 id=title></h2>
+<div id=div1>
+  <p><b id=docName>CW8 - SubtleCrypto</b> &nbsp; 
+  </p>
+  <p>
+      <input id=remote type=text multiple onChange='calculateSHAFromURL()' /><br><br>
+      <input id=local type=file multiple onChange='calculateSHAFromFile()' />
+  </p> 
+  <br>
+  <strong>Sample Code</strong>  <br>
+<hr>
+  <div id=div2>
+    <pre id=sample>
+  </div>
+  <div id=sss style="display: none;"></div>
+  <br>
 
-<div>
-  URL: 
-  <input type=text id=remote > <br>
-  <input type=file id=button >
 </div>
-<div id=msg></div>
-<pre id=disp1></pre> <img id=disp2 />
 
-<hr>
-<b>Sample code</b>
-<pre id=sample></pre>
-<hr>
-<p>Ref: <a href="Reading_files">Reading files</a>
- </p>
 
+<link  href="https://maeyler.github.io/JS/sss/inspector.css" rel="stylesheet">
+<script src="https://maeyler.github.io/JS/sss/inspector.js"></script>
 <script>
 "use strict";
+class Crypto extends Menu {
+  constructor() {
+    super();
+    this.subtle = crypto.subtle
+    this.algorithm = 'SHA-1'
+    this.M = M
+  }
+}
 
+var a, b, c, d;  //global variables
+let L = console.log, D = display,
+    M = "küçük şeyler güzeldir",
+    toHex = b=>b.toString(16).padStart(2,'0'),
+    subtle = crypto.subtle,
+    TEXT = 'const M = "'+M+'",\ntoHex = '+toHex
 
+function fileSelect(t) { //from Async.js
+    let a = t.files;
+    if (a.length == 0) return;
+    display(a.length==1? a[0] : a)
+}
+function init() {
+    MENU = new Crypto() //global
+    display(MENU) 
+    // sample.innerText = '  '
+    //  +MENU.shaFromFile+'\n  '+MENU.shaFromURL
+}
 
 function shaFromBuffer(buf) { //ArrayBuffer or ArrayBufferView
     crypto.subtle.digest(MENU.algorithm, buf)
@@ -60,50 +84,48 @@ function shaFromURL(u) { //URL or string
     fetch(u).then(r => r.arrayBuffer())
       .then(MENU.shaFromBuffer)
 }
+function shaFromString(txt) {
+    if (txt.startsWith('https://')) {
+      let u = new URL(txt); display(u)
+      MENU.shaFromURL(u)
+    } else {
+      let b = new TextEncoder().encode(txt)
+      MENU.shaFromBuffer(b)
+    }
+}
 function  bufferToHex(buf) {
     return [...new Uint8Array(buf)].map(toHex).join('')
 }
 
-
-/*
-const RDR = new FileReader();
-// ornek kedi resmi linki
-// https://pbs.twimg.com/media/FDcs2dMWEAEtI4v?format=jpg&name=900x900
-async function displayURL() {
-  const response = await fetch(remote.value)
-  const blob = await response.blob()
-  const url = URL.createObjectURL(blob)
-  disp2.src = url
-  shaFromURL(remove.value)
-  console.log("shaFromURL: " + shaFromURL(remove.value))
+function calculateSHAFromURL(){
+    let url = remote.value
+    console.log("URL: " + url)
+    toHex = b=>b.toString(16).padStart(2,'0');
+    //encode string M, then digest it using SHA-1
+    let urlSHA1Code = subtle.digest('SHA-1', new TextEncoder().encode(url))
+    .then(x=>[...new Uint8Array(x)].map(toHex).join(''))
+    //console.log(urlSHA1Code)
+    urlSHA1Code.then(res => console.log(res))
 }
-function displayBlob(f) {
-    shaFromFile(remove.value)
-    console.assert(f instanceof Blob)
-    msg.innerText = f.size+" bytes "+f.type
-    disp1.innerText = ""; 
-    disp2.src = ""
-    if (f.type.startsWith("image")) {
-        RDR.readAsDataURL(f); //display image
-        RDR.onload = () => console.log(f, RDR)
-    } else if (f.type.startsWith("text")) {
-        RDR.readAsText(f);  //display text
-        RDR.onload = () => {
-          console.log(f, RDR.result)
-          disp1.innerText = RDR.result
-        }
-    } else {
-        msg.innerText += " -- Unknown"
-    }
-    console.log("shaFromFile: " + shaFromFile(f))
+
+function calculateSHAFromFile(){
+    let file = local.value
+    toHex = b=>b.toString(16).padStart(2,'0');
+    //encode string M, then digest it using SHA-1
+    let fileSHACode = subtle.digest('SHA-1', new TextEncoder().encode(file))
+    .then(x=>[...new Uint8Array(x)].map(toHex).join(''))
+    //console.log(fileSHACode)
+    fileSHACode.then(res => console.log(res))
 }
-*/
 
-
-
-title.innerText = document.title
-sample.innerText = ""
+  docName.innerText = document.title
+  sample.innerText = calculateSHAFromFile +"\n\n" + calculateSHAFromURL
+  try {
+    inspect(sss, init); //makes the table
+    inp.value = "new Uint8Array(_)";
+  } catch(e) {
+    reportError(e);
+  }
 </script>
-
 </body>
 </html>
