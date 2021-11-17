@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Multiplication Table</title>
+
+  <style>
+    body { max-width: 440px; }
+    pre  { overflow-x: auto; }
+    input { width: 50px }
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+a = <input type=number id=a1 value=0 onChange="calculate()">
+&emsp;
+b = <input type=number id=b1 value=1 onChange="calculate()">
+&emsp;
+<span id=res></span>
+<pre id=out><b>Table</b></pre>
+
+<hr />
+<b>Sample code</b>
+<pre id=sample></pre>
+
+<hr />
+
+<script>
+"use strict";
+function multp(a, b) {
+  let result = a*b;
+  return result
+}
+  
+function calculate() {
+      
+  let a= Number(a1.value)
+  if (!Number.isInteger(a)) {
+     a = Math.round(a); a1.value = a
+  }
+  let b = Number(b1.value)
+  res.innerText = "A x B = "+ a*b;
+}
+
+function doTable() {
+  const L = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  let k = L.map((b) => b)
+  let str = header(k)
+  for (let i=1; i<=6; i++) { 
+     let k = L.map((b) => i*b)
+     str += oneLine(k, i)
+  }
+  return str
+}
+let header  = (k) => '     '+ k.join('     ') 
+let oneLine = (k, i) => '\n'+i+ '    '+ k.join('     ')
+  
+  title.innerText = document.title
+  sample.innerText = multp+'\n'+doTable
+  calculate()
+  out.innerText = doTable()
+</script>
+
+</body>
+</html>
