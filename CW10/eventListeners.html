@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Event Listener </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #url { width: 190px; }
+    span, #url { color: rgb(99, 99, 141); }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id=title title="Put your name here"></h2>
+
+<p title="Battery level (integer)">
+  Battery level: <span id=lev></span>
+</p>
+<p title="Online Status">
+    Online Status: <span id=offon></span>
+</p>
+<p title="navigator.Keyboard">
+    Keyboard: <span id=keyb></span>
+</p>
+<hr />
+<b>Sample code</b>
+<pre id=sample></pre>
+
+<hr />
+
+<script>
+"use strict";
+
+/*window.onkeydown = () =>{
+    if(event.key == "k"){
+        navigator.body.style.background = "CadetBlue"
+    }
+}*/
+
+function init(){
+    offon.innerText = 'xxx';
+    lev.innerText = 'xxx';
+    keyb.innerText = 'Press a key!';
+    
+    window.onkeyup = e => keyb.innerText = e.key
+    navigator.getBattery().then( b => lev.innerText =("%" + (b.level*100).toFixed(0))) 
+    window.ononline = () => offon.innerText = "online"
+    window.onoffline = () => offon.innerText = "offline"
+    
+    
+}
+    title.innerText = document.title;
+    sample.innerText = init;
+    init();
+</script>
+
+</body>
+</html>
