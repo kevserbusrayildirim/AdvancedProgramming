@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevser Büşra Yıldırım</title>
+</head>
+<style>
+#myContainer {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: rgb(124, 191, 230);
+}
+#bee {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  
+}
+
+</style>
+<body>
+
+<p>
+<button onclick="bee .animate(t2, 5000)">Fly Me</button>
+</p>
+
+<div id ="myContainer">
+<img id ="bee" src = "bee.png" ></img>
+</div>
+<b>Sample code</b>
+<pre id=sample></pre>
+
+<script>
+function moveIt(){
+let x0 = "translate(150px,0px)";
+let x1 = "translate(300px,100px)";
+let x2 = "translate(150px,300px)";
+let x3 = "translate(0px,100px)";
+
+t2 = {transform: [x0, x1, x2, x3, x0, x1, x2, x3, x0] };
+
+}
+moveIt()
+sample.innerText = moveIt
+</script>
+
+</body>
+</html>
