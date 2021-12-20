@@ -1,0 +1,148 @@
+*{
+    text-align: center;
+    justify-content: center;
+    font-family: Arial;
+    font-size: 17px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.header{
+    height: 70px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 1rem 1rem 0 1rem;
+    background-color: #eeeeee;
+    justify-content: space-between;
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #5d4954;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+.logo{
+    color: #eeeeee;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+.navlin{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+.navlin li{
+    list-style: none;
+}
+.navlin a{
+    color: #eeeeee;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+
+.burger{
+    display: none;
+    cursor: pointer;
+}
+.burger div{
+    width: 25px;
+    height: 3px;
+    background-color: #eeeeee;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+.container1 img {
+    vertical-align: middle;
+    
+  }
+
+.container1 .content1 {
+  position: static;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+  .container2 img {
+      vertical-align: middle;
+      
+    }
+  
+  .container2 .content2 {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  }
+  @media screen and (max-width:1024px){
+    .navlin{
+        width: 60%;
+    }
+}
+  @media screen and (max-width:400px){
+    body{
+        overflow-x: hidden;
+    }
+    .navlin{
+          position: absolute;
+          right: 0px;
+          height: 92vh;
+          top: 8vh;
+          background-color: #5d4954;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 30%;
+          transform: translateX(100%);
+          transition: transform 0.5s ease-in;
+      }
+      .navlin li{
+          opacity: 0;
+      }
+      .burger{
+        display: block;
+      }
+      
+  }
+.nav-active{
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade{
+    from{
+        opacity: 0;
+        transform: translateX(30px);
+    }to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.toggle .line1{
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2{
+    opacity: 0;
+}
+.toggle .line3{
+    transform: rotate(45deg) translate(-5px, -6px);
+}

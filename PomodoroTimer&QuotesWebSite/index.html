@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h4>SUNFLOWER QUOTES</h4>
+        </div>
+        <ul class="navlin">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+   
+    
+    <div class="container1">
+    <div class="content1">
+        <h1>Pomodoro Timer</h1>
+        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.</p>
+    </div>
+    </div>
+
+    <div class="container2">
+        <img src="byc.jpg" alt="byc" style="width:100%;">
+        <div class="content2">
+          <h1>Today's Quote</h1>
+          <p id="text"></p>
+          <p id="author"></p>
+        </div>
+    </div>
+    
+    
+</body>
+<script src="./index.js">
+    const navSlide = () => {
+       const burger = document.querySelector('.burger');
+       const nav = document.querySelector('.navlin');
+       const navLinks = document.querySelectorAll('.navlin li')
+       
+       
+       burger.addEventListener('click',() => {
+            //Toggle Nav
+            nav.classList.toggle('nav-active');
+           //Animate Links
+            navLinks.forEach((link, index) => {
+                if(link.style.animation){
+                    link.style.animation = ''
+                }
+                else{
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`
+                }
+            });
+            burger.classList.toggle('toggle');
+        });
+        
+    }
+    navSlide();
+</script>
+</html>
