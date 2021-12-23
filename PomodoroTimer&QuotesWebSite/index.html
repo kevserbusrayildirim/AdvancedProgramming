@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <title>Document</title>
+    <title>Countdown</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -28,7 +29,10 @@
     <div class="container1">
     <div class="content1">
         <h1>Pomodoro Timer</h1>
-        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.</p>
+        <p id= "countdown">25.00</p>
+        <button onclick="updateCountdown()">Start</button>
+        <button onclick="stopCountdown()">Stop</button>
+        <button onclick="resetCountdown()">Reset</button>
     </div>
     </div>
 
@@ -40,7 +44,13 @@
           <p id="author"></p>
         </div>
     </div>
-    
+    <div id="foot">
+        <p style="font-size: 13px; color: grey;">References: 
+            <a style="text-decoration: underline;" href="https://type.fit/api/quotes">JSON datas</a>
+        </p>
+        <footer>Kevser Büşra YILDIRIM &copy; Copyright 2021</footer>
+    </div>
+    </div>
     
 </body>
 <script src="./index.js">
