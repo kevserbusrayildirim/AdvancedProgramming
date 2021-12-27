@@ -4,96 +4,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <title>Document</title>
-    <title>Countdown</title>
+    <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="./style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+    </style>
 </head>
 <body>
     <nav>
         <div class="logo">
             <h4>SUNFLOWER QUOTES</h4>
         </div>
-        <ul class="navlin">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
     </nav>
-   
-    
     <div class="container1">
-    <div class="content1">
-        <h1>Pomodoro Timer</h1>
-        <p id= "timeleft">00.00</p>
-      
-        
-        <select id="minutes-select" class="action-button shadow animate blue">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25" selected>25</option>
-            <option value="30">30</option>
-            <option value="35">35</option>
-            <option value="45">40</option>
-            <option value="50">50</option>
-            <option value="55">55</option>
-            <option value="60">60</option>
-          </select>
-         
-        
-          <button id="startButton">Start</button>
-          <button id="resetButton" value="false">Reset</button>
-     
-     
-    </div>
-    </div>
-
-    <div class="container2">
-        <img src="byc.jpg" alt="byc" style="width:100%;">
-        <div class="content2">
-          <h1>Today's Quote</h1>
-          <p id="text"></p>
-          <p id="author"></p>
+        <div class="content1">
+            <h1>POMODORO TIMER</h1>
+            <p id="timeleft">00.00</p>
+            <select id="minutes-select" class="action-button shadow animate blue">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25" selected>25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="45">40</option>
+                <option value="50">50</option>
+                <option value="55">55</option>
+                <option value="60">60</option>
+            </select>
+            <button id="startButton">Start</button>
+            <button id="resetButton" value="false">Reset</button>
         </div>
+        <div class="content2">
+            <h1>Today's Quote</h1>
+            <p id="text"></p>
+            <p id="author"></p>
+        </div>
+    </div>
+    <div>
+        <img src="byc.jpg" alt="byc" style="width:100%;">
     </div>
     <div id="foot">
-        <p style="font-size: 13px; color: grey;">References: 
+        <p style="font-size: 13px; color: grey;">References:
             <a style="text-decoration: underline;" href="https://type.fit/api/quotes">JSON datas</a>
         </p>
         <footer>Kevser Büşra YILDIRIM &copy; Copyright 2021</footer>
     </div>
-    </div>
-    
 </body>
 <script src="./index.js">
     const navSlide = () => {
-       const burger = document.querySelector('.burger');
-       const nav = document.querySelector('.navlin');
-       const navLinks = document.querySelectorAll('.navlin li')
-       
-       
-       burger.addEventListener('click',() => {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.navlin');
+        const navLinks = document.querySelectorAll('.navlin li')
+
+
+        burger.addEventListener('click', () => {
             //Toggle Nav
             nav.classList.toggle('nav-active');
-           //Animate Links
+            //Animate Links
             navLinks.forEach((link, index) => {
-                if(link.style.animation){
+                if (link.style.animation) {
                     link.style.animation = ''
                 }
-                else{
+                else {
                     link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`
                 }
             });
             burger.classList.toggle('toggle');
         });
-        
+
     }
+
     navSlide();
 </script>
+
 </html>

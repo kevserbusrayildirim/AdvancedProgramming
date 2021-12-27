@@ -1,5 +1,3 @@
-var alertSound = new Audio('./audio/ship_bell.mp3');
-alertSound.loop = false;
 var pomodoroCountdownId;
 var pomodoroButtonPressed = false;
 var pomodoroResetButton = document.getElementById('resetButton');
@@ -20,8 +18,6 @@ pomodoroStartButton.addEventListener('click', function() {
   pomodoroCountdown();
 })
 
-// TODO: 1. Style and complete. Maybe overlay timer over a grey bell
-
 pomodoroShowNextSecond = function() {
   if (resetCheck === true || pomodoroButtonPressed === false) {
     pomodoroTimeLeft.innerHTML = '0:00';
@@ -39,7 +35,6 @@ pomodoroShowNextSecond = function() {
     pomodoroTimeLeft.innerHTML = minutes + ':' + seconds;
   } else if (pomodoroButtonPressed && pomodoroTime === 0) {
     pomodoroButtonPressed = false;
-    alertSound.play();
   }
 }
 pomodoroCountdown = function() {
@@ -50,8 +45,7 @@ pomodoroCountdown = function() {
 }
 
 
-
-
+//Data fetch
 let list = []
 const text = document.getElementById("text")
 const author = document.getElementById("author")
@@ -71,8 +65,6 @@ function fetchDatas(){
         author.innerText = myData.author 
     })
 }
-
-
 
 
 fetchDatas()
