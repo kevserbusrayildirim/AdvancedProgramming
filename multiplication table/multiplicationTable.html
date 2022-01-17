@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiplicationTable</title>
+    <style type="text/css">
+        table,th,td{
+            border: 1px solid rgb(77, 77, 150);
+            border-collapse:collapse
+        }
+        th,td{
+            width: 50px;
+            font-size: 20px;
+        }
+        th{
+           color:rgb(58, 128, 172); 
+        }
+    </style>
+</head>
+<body>
+    
+    <table id="mytable">
+    </table>
+    <hr>
+    <b>Sample code</b>
+    <pre id=sample></pre>
+
+    <script>
+        var table = document.getElementById('mytable');
+        var output="";
+
+        function multiplicationTable(){
+
+        for(let i=1; i<=10; i++){
+            output += "<tr>";
+            for(let j=1; j<=20; j++){
+                if(i==1 && j==1)
+                    output +="<th>&times;</th>"
+                else{
+                    if(i==1 || j==1)
+                        output += "<th>"+i*j+"</th>";
+                    else
+                        output += "<td>"+i*j+"</td>";
+                }
+            }
+            output += "</tr>";
+        }
+        }
+        multiplicationTable()
+        table.innerHTML=output;
+        sample.innerText = multiplicationTable
+
+    </script>
+</body>
+</html>
